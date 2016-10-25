@@ -1,0 +1,158 @@
+<openerp>
+  <data>
+
+
+    <record model="ir.actions.act_window" id="openexams_qp_action">
+      <field name="name">Question Papers</field>
+      <field name="res_model">openexams.questionpaper</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Start adding Question Papers :)</p>
+      </field>
+    </record>
+
+
+
+      <record model="ir.actions.act_window" id="openexams_co_action">
+        <field name="name">Course Outcomes</field>
+        <field name="res_model">openexams.co</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">Start adding  COs</p>
+        </field>
+      </record>
+
+      <record id="openexams_co_form_view" model="ir.ui.view">
+           <field name="name">openexams.co.form.view</field>
+           <field name="view_type">form</field>
+           <field name="model">openexams.co</field>
+           <field name="arch" type="xml">
+             <form string='CO'>
+               <field name="name"/>
+               <field name="discription"/>
+               <field name="courseid"/>
+               <field name="po_id"/>
+             </form>
+           </field>
+       </record>
+
+        <record model="ir.actions.act_window" id="openexams_po_action">
+          <field name="name">Programme Outcomes</field>
+          <field name="res_model">openexams.po</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Start adding POs</p>
+          </field>
+        </record>
+
+          <record model="ir.actions.act_window" id="openexams_course_action">
+            <field name="name">Courses</field>
+            <field name="res_model">openexams.course</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Start adding courses</p>
+            </field>
+          </record>
+
+          <record model="ir.actions.act_window" id="openexams_co_po_action">
+            <field name="name">CO PO Map</field>
+            <field name="res_model">openexams.co.po</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Start mapping</p>
+            </field>
+          </record>
+
+          <menuitem id="openexams" name="Open Exams"/>
+          <menuitem id="openexams_menu" name="Open Exams" parent="openexams"/>
+          <menuitem id="openexams_menu_nba" name="NBA" parent="openexams"/>
+          <menuitem id="openexams_qp_menu"
+              name="Question Paper"
+              parent="openexams_menu"
+              action="openexams_qp_action"
+            />
+          <menuitem id="openexams_co_menu"
+                name="Course Outcomes"
+                parent="openexams_menu_nba"
+                action="openexams_co_action"
+            />
+          <menuitem id="openexams_po_menu"
+                  name="Programme Outcomes"
+                  parent="openexams_menu_nba"
+                  action="openexams_po_action"
+            />
+          <menuitem id="openexams_course_menu"
+                    name="Courses"
+                    parent="openexams_menu_nba"
+                    action="openexams_course_action"
+            />
+          <menuitem id="openexams_co_po_menu"
+                      name="CO PO Mapping"
+                      parent="openexams_menu_nba"
+                      action="openexams_co_po_action"
+            />
+
+
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="openexams.list">
+      <field name="name">openexams list</field>
+      <field name="model">openexams.openexams</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="openexams.action_window">
+      <field name="name">openexams window</field>
+      <field name="res_model">openexams.openexams</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="openexams.action_server">
+      <field name="name">openexams server</field>
+      <field name="model_id" ref="model_openexams_openexams"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="openexams" id="openexams.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="openexams.menu_1" parent="openexams.menu_root"/>
+    <menuitem name="Menu 2" id="openexams.menu_2" parent="openexams.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="openexams.menu_1_list" parent="openexams.menu_1"
+              action="openexams.action_window"/>
+    <menuitem name="Server to list" id="openexams" parent="openexams.menu_2"
+              action="openexams.action_server"/>
+    -->
+  </data>
+</openerp>
