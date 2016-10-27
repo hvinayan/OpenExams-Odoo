@@ -2,15 +2,42 @@
   <data>
 
 
-    <record model="ir.actions.act_window" id="openexams_qp_action">
-      <field name="name">Question Papers</field>
-      <field name="res_model">openexams.questionpaper</field>
+    <record model="ir.actions.act_window" id="openexams_exam_action">
+      <field name="name">Examinations</field>
+      <field name="res_model">openexams.exam</field>
       <field name="view_type">form</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar</field>
       <field name="help" type="html">
-        <p class="oe_view_nocontent_create">Start adding Question Papers :)</p>
+        <p class="oe_view_nocontent_create">Start adding Examinations</p>
       </field>
     </record>
+
+
+    <record id="openexams_exam_tree" model="ir.ui.view">
+        <field name="name">openexams.exam.tree</field>
+        <field name="model">openexams.exam</field>
+        <field name="arch" type="xml">
+            <tree string="Exam">
+              <field name="name"/>
+              <field name="course"/>
+              <field name="internal"/>
+              <field name="sem"/>
+              <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="session_calendar_view">
+               <field name="name">openexams.exam.calendar</field>
+               <field name="model">openexams.exam</field>
+               <field name="arch" type="xml">
+                 <calendar string="exam" date_start="date">
+                     <field name="name"/>
+                 </calendar>
+               </field>
+     </record>
 
 
 
@@ -39,6 +66,20 @@
            </field>
        </record>
 
+
+               <record id="openexams_co_tree" model="ir.ui.view">
+                   <field name="name">openexams.co.tree</field>
+                   <field name="model">openexams.co</field>
+                   <field name="arch" type="xml">
+                       <tree string="Course Outcome">
+                         <field name="name"/>
+                         <field name="discription"/>
+                         <field name="courseid"/>
+                         <field name="po_id"/>
+                       </tree>
+                   </field>
+               </record>
+
         <record model="ir.actions.act_window" id="openexams_po_action">
           <field name="name">Programme Outcomes</field>
           <field name="res_model">openexams.po</field>
@@ -47,6 +88,17 @@
           <field name="help" type="html">
             <p class="oe_view_nocontent_create">Start adding POs</p>
           </field>
+        </record>
+
+        <record id="openexams_po_tree" model="ir.ui.view">
+            <field name="name">openexams.po.tree</field>
+            <field name="model">openexams.po</field>
+            <field name="arch" type="xml">
+                <tree string="Programme Outcome">
+                  <field name="name"/>
+                  <field name="discription"/>
+                </tree>
+            </field>
         </record>
 
           <record model="ir.actions.act_window" id="openexams_course_action">
@@ -69,13 +121,26 @@
             </field>
           </record>
 
+          <record id="openexams_co_po_tree" model="ir.ui.view">
+              <field name="name">openexams.co.po.tree</field>
+              <field name="model">openexams.co.po</field>
+              <field name="arch" type="xml">
+                    <tree string="Mapping">
+                    <field name="po_id"/>
+                    <field name="co_id"/>
+                    <field name="weight"/>
+                  </tree>
+              </field>
+          </record>
+
+
           <menuitem id="openexams" name="Open Exams"/>
           <menuitem id="openexams_menu" name="Open Exams" parent="openexams"/>
           <menuitem id="openexams_menu_nba" name="NBA" parent="openexams"/>
-          <menuitem id="openexams_qp_menu"
-              name="Question Paper"
+          <menuitem id="openexams_exam_menu"
+              name="Exams"
               parent="openexams_menu"
-              action="openexams_qp_action"
+              action="openexams_exam_action"
             />
           <menuitem id="openexams_co_menu"
                 name="Course Outcomes"
@@ -88,14 +153,14 @@
                   action="openexams_po_action"
             />
           <menuitem id="openexams_course_menu"
-                    name="Courses"
-                    parent="openexams_menu_nba"
-                    action="openexams_course_action"
+                   name="Courses"
+                   parent="openexams_menu_nba"
+                   action="openexams_course_action"
             />
           <menuitem id="openexams_co_po_menu"
-                      name="CO PO Mapping"
-                      parent="openexams_menu_nba"
-                      action="openexams_co_po_action"
+                   name="CO PO Mapping"
+                   parent="openexams_menu_nba"
+                   action="openexams_co_po_action"
             />
 
 
