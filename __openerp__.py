@@ -18,7 +18,7 @@
     'category': 'Exam',
     'version': '0.1',
 
-    'depends': ['base'],
+    'depends': ['base','students'],
 
     'data': [
         'views/views.xml',

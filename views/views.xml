@@ -27,6 +27,24 @@
         </field>
     </record>
 
+    <record model="ir.actions.act_window" id="openexams_mark_action">
+      <field name="name">Evaluation</field>
+      <field name="res_model">openexams.mark</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="arch" type="xml">
+        <group name="marks">
+            <button name="copy_mark" type="object" string="Duplicate"/>
+        </group>
+      </field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Start scoring papers</p>
+      </field>
+    </record>
+
+
+
+
 
 
     <record model="ir.ui.view" id="session_calendar_view">
@@ -135,13 +153,18 @@
 
 
           <menuitem id="openexams" name="Open Exams"/>
-          <menuitem id="openexams_menu" name="Open Exams" parent="openexams"/>
-          <menuitem id="openexams_menu_nba" name="NBA" parent="openexams"/>
+          <menuitem id="openexams_menu" name="Open Exams" parent="openexams"  />
+          <menuitem id="openexams_menu_nba" name="NBA" parent="openexams" />
           <menuitem id="openexams_exam_menu"
               name="Exams"
               parent="openexams_menu"
               action="openexams_exam_action"
             />
+            <menuitem id="openexams_mark_menu"
+                name="Evaluation"
+                parent="openexams_menu"
+                action="openexams_mark_action"
+              />
           <menuitem id="openexams_co_menu"
                 name="Course Outcomes"
                 parent="openexams_menu_nba"
@@ -164,60 +187,5 @@
             />
 
 
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="openexams.list">
-      <field name="name">openexams list</field>
-      <field name="model">openexams.openexams</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="openexams.action_window">
-      <field name="name">openexams window</field>
-      <field name="res_model">openexams.openexams</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="openexams.action_server">
-      <field name="name">openexams server</field>
-      <field name="model_id" ref="model_openexams_openexams"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="openexams" id="openexams.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="openexams.menu_1" parent="openexams.menu_root"/>
-    <menuitem name="Menu 2" id="openexams.menu_2" parent="openexams.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="openexams.menu_1_list" parent="openexams.menu_1"
-              action="openexams.action_window"/>
-    <menuitem name="Server to list" id="openexams" parent="openexams.menu_2"
-              action="openexams.action_server"/>
-    -->
   </data>
 </openerp>
